@@ -4,8 +4,27 @@ spring:
 
   cloud:
     gateway:
+
+      # 🌐 GLOBAL CORS CONFIG
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+      # 🚦 ROUTES
       routes:
-        # AUTH SERVICE (NO JWT FILTER)
+        # AUTH SERVICE (PUBLIC)
         - id: auth-service
           uri: lb://auth-service
           predicates:
