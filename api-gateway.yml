@@ -38,6 +38,14 @@ spring:
           filters:
             - JwtAuthenticationFilter
 
+        # SEAT SERVICE (JWT PROTECTED)
+        - id: seat-service
+          uri: lb://flight-service
+          predicates:
+            - Path=/seat/**
+          filters:
+            - JwtAuthenticationFilter
+
         # BOOKING SERVICE (JWT PROTECTED)
         - id: booking-service
           uri: lb://booking-service
